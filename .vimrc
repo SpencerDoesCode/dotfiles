@@ -1,7 +1,19 @@
 set nocompatible "This fixes the problem where arrow keys do not function properly on some systems.
+syntax on
 
-syntax on  "Enables syntax highlighting for programming languages
-execute pathogen#infect()
+"Package manager
+call plug#begin('~/.vim/plugged')
+
+" Make sure you use single quotes
+" Shorthand notation; fetches github.com
+Plug 'https://github.com/ctrlpvim/ctrlp.vim'
+Plug 'itchyny/lightline.vim'
+Plug 'tomtom/tcomment_vim'
+Plug 'mhinz/vim-startify'
+Plug 'vim-perl/vim-perl', { 'for': 'perl', 'do': 'make clean carp dancer highlight-all-pragmas moose test-more try-tiny' }
+Plug 'pangloss/vim-javascript'
+call plug#end()
+
 set showmatch "Highlights matching brackets in programming languages
 set autoindent  "If you're indented, new lines will also be indented
 set mouse=
@@ -11,8 +23,7 @@ set number  "Enables line numbering
 set smarttab 
 set tabstop=4 
 set shiftwidth=4 
-set noexpandtab 
-autocmd BufNewFile,BufRead *.py,*yml set expandtab
+set expandtab 
 set ruler
 set incsearch
 set ignorecase
@@ -27,12 +38,21 @@ set foldmethod=manual  "Lets you hide sections of code
 set splitright
 set background=dark
 colors elflord " Colorscheme for over ssh connections
+
 "--- The following commands make the navigation keys work like standard editors
 imap <silent> <Down> <C-o>gj
 imap <silent> <Up> <C-o>gk
 nmap <silent> <Down> gj
 nmap <silent> <Up> gk
 "--- Ends navigation commands
+
+function NumberToggle()
+  if(&relativenumber == 1)
+    set number
+  else
+    set relativenumber
+  endif
+endfunc
 
 "--- Leader assignment and commands
 let mapleader = ","
@@ -54,8 +74,8 @@ if has('gui_running')
 endif
 
 "--- Ctrl-P config
-cd ~/repos
-set runtimepath^=~/.vim/bundle/ctrlp.vim
+cd ~/code
+set runtimepath^=~/.vim/plugged/ctrlp.vim
 let g:ctrlp_map = '<c-x>'
 let g:ctrlp_working_path_mode = 0
 let g:ctrlp_max_files=0
@@ -67,8 +87,6 @@ let g:ctrlp_custom_ignore = {
   \ 'file': '\.so$\|\.dat$|\.ico*|\.DS_Store$|\.gitignore$|\.bower.*$|\.*rc$'
   \ }
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/\.svn/*,\*.DS_Store
-
-let g:robot_syntax_for_txt = 1
 
 "--- Tab configuration
 nmap tn :tabnew<CR>
@@ -94,13 +112,6 @@ vnoremap < <gv
 vnoremap > >gv
 nnoremap <NL> i<CR><ESC>
 
-function NumberToggle()
-  if(&relativenumber == 1)
-    set number
-  else
-    set relativenumber
-  endif
-endfunc
 
 "Custom plugin stuff
 let g:EasyMotion_leader_key = 'Q'
