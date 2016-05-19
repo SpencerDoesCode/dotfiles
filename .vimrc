@@ -74,7 +74,7 @@ if has('gui_running')
 endif
 
 "--- Ctrl-P config
-cd ~/code
+"cd ~/code
 set runtimepath^=~/.vim/plugged/ctrlp.vim
 let g:ctrlp_map = '<c-x>'
 let g:ctrlp_working_path_mode = 0
