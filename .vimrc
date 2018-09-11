@@ -10,7 +10,7 @@ Plug 'https://github.com/ctrlpvim/ctrlp.vim'
 Plug 'itchyny/lightline.vim'
 Plug 'tomtom/tcomment_vim'
 Plug 'mhinz/vim-startify'
-Plug 'vim-perl/vim-perl', { 'for': 'perl', 'do': 'make clean carp dancer highlight-all-pragmas moose test-more try-tiny' }
+Plug 'vim-perl/vim-perl'
 Plug 'pangloss/vim-javascript'
 call plug#end()
 
@@ -20,18 +20,18 @@ set mouse=
 set smartindent  "Automatically indents lines after opening a bracket in programming languages
 set backspace=2  "This makes the backspace key function like it does in other programs.
 set number  "Enables line numbering
-set smarttab 
-set tabstop=4 
-set shiftwidth=4 
-set expandtab 
+set smarttab
+set tabstop=4
+set shiftwidth=4
+set expandtab
 set ruler
 set incsearch
 set ignorecase
 set smartcase
 set hlsearch
-set title 
-set titleold="" 
-set titlestring=%F 
+set title
+set titleold=""
+set titlestring=%F
 set paste
 set magic
 set foldmethod=manual  "Lets you hide sections of code
@@ -65,7 +65,7 @@ nmap <Leader>g :Ag
 "May need this....
 nmap <Leader>s :tabo<CR>:Startify<CR>
 "--- Quick hack to close quickfix window when it doesn't have focus
-nmap <Leader>q <C-w>wq 
+nmap <Leader>q <C-w>wq
 
 set t_Co=256
 
@@ -105,7 +105,7 @@ function! SearchWord(word)
 	normal n
 endfunction
 command! -nargs=1 SearchWord call SearchWord(<f-args>)
-nmap ? :SearchWord 
+nmap ? :SearchWord
 hi Search cterm=NONE ctermfg=white ctermbg=blue
 hi Visual cterm=NONE ctermfg=white ctermbg=blue
 vnoremap < <gv
