@@ -12,6 +12,8 @@ Plug 'tomtom/tcomment_vim'
 Plug 'mhinz/vim-startify'
 Plug 'vim-perl/vim-perl'
 Plug 'pangloss/vim-javascript'
+Plug 'mileszs/ack.vim'
+Plug 'moll/vim-node'
 call plug#end()
 
 set showmatch "Highlights matching brackets in programming languages
@@ -23,7 +25,8 @@ set number  "Enables line numbering
 set smarttab
 set tabstop=4
 set shiftwidth=4
-set expandtab
+set listchars=tab:\|_
+set lcs+=space:·
 set ruler
 set incsearch
 set ignorecase
@@ -32,12 +35,17 @@ set hlsearch
 set title
 set titleold=""
 set titlestring=%F
+set noswapfile
 set paste
 set magic
 set foldmethod=manual  "Lets you hide sections of code
 set splitright
 set background=dark
-colors elflord " Colorscheme for over ssh connections
+set clipboard=unnamedplus
+colors elflord
+
+"--- file types
+au BufRead,BufNewFile *.foundationrules,*.rules,*.load set filetype=perl
 
 "--- The following commands make the navigation keys work like standard editors
 imap <silent> <Down> <C-o>gj
@@ -62,6 +70,7 @@ nmap <Leader>n :nohl<CR>
 vmap <Leader>c :w !pbcopy<CR><CR>
 nmap <Leader>mk :mksession! ~/.vim/session/
 nmap <Leader>g :Ag
+nmap <Leader>u :set nu!<CR>
 "May need this....
 nmap <Leader>s :tabo<CR>:Startify<CR>
 "--- Quick hack to close quickfix window when it doesn't have focus
@@ -74,7 +83,7 @@ if has('gui_running')
 endif
 
 "--- Ctrl-P config
-"cd ~/code
+cd ~/dev/
 set runtimepath^=~/.vim/plugged/ctrlp.vim
 let g:ctrlp_map = '<c-x>'
 let g:ctrlp_working_path_mode = 0
@@ -96,13 +105,17 @@ nmap ) :tabnext<CR>
 nmap ( :tabprev<CR>
 
 autocmd VimEnter * wincmd p
+autocmd BufWritePre * :%s/\s\+$//e
 au BufRead,BufNewFile *.js set filetype=jquery
 au BufRead,BufNewFile *.scss set filetype=scss
+au BufRead,BufNewFile *.rules set filetype=perl
+au BufRead,BufNewFile *.def set filetype=json
+
 nnoremap n nzzzv
 nnoremap N Nzzzv
 function! SearchWord(word)
     let @/ = '\<' . a:word . '\>'
-	normal n
+normal n
 endfunction
 command! -nargs=1 SearchWord call SearchWord(<f-args>)
 nmap ? :SearchWord
@@ -120,3 +133,4 @@ let g:lightline = {
       \ 'colorscheme': 'landscape',
       \ }
 set noshowmode
+
