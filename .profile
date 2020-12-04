@@ -29,7 +29,7 @@ PATH=~/bin:/usr/local/bin:/usr/local/sbin:/usr/local/mysql/bin:/usr/local/mongod
 ssh() { /usr/bin/ssh "$@" ; echo -n -e "\033]0;\007" ; }
 
 grepfn() {
-	ag $1 * 
+	ag $1 *
 }
 
 findfn() {
@@ -40,12 +40,6 @@ get_vim_sessions() {
 	cd ~/.vim/session && ls -t ~/.vim/session/*.vim | awk -F "/" '{print $NF}'
 }
 
-run_pa() {
-	export INVENTORY_LOCUST_HOME="inventory_pa"
-	export ECL_ENVIRONMENT="ecldr"
-	export PYTHONPATH="inventory_pa"
-	locust -f $1 --host=https://dr.inventoryplus.dealertrack.com
-}
 
 gitdiff() {
 	 git diff --color $1 | diff-so-fancy
@@ -55,19 +49,6 @@ set listchars=tab:\|-,trail:~
 
 #Lazy log command
 export HISTTIMEFORMAT='%F %T '
-export ECL_HOME=~/repos/ecl/code/
-export MONGO_HOME=/usr/local/Cellar/mongodb
-export DYLD_LIBRARY_PATH=/usr/local/mysql/lib
-export DB2_HOME=/opt/IBM/db2/V10.1/
-export go='code/lib/eCarList'
-export gojs='code/lib/javascript'
-export gocss='code/lib/css'
-alias ocb='cd ~/repos/ecl/code/perl/eCarList'
-alias scripts='cd ~/repos/ecl/code/perl/scripts'
-alias daily='cd ~/repos/ecl/code/perl/scripts/cron.daily'
-alias og1='cd ~/repos/ecl/code/perl/scripts/cron.daily.outgoing1'
-alias og2='cd ~/repos/ecl/code/perl/scripts/cron.daily.outgoing2'
-alias misc='cd ~/repos/ecl/code/perl/scripts/cron.misc'
 alias l='ls -laoF'
 alias vi='vim'
 alias rootvimdiff='root && git diff | vim -'
@@ -76,40 +57,13 @@ alias ..='cd ..'
 alias ...='cd ../..'
 alias cd..='cd ..'
 alias nike='sudo $(fc -ln -1)'
-alias ncb='cd /Users/cspencer/repos/ecl/code/lib/eCarList'
-alias gojs='cd /Users/cspencer/repos/ecl/code/lib/javascript'
-alias gocss='cd /Users/cspencer/repos/ecl/code/lib/css'
-alias gotmpl='cd /Users/cspencer/repos/ecl/templates'
-alias gokard='cd /Users/cspencer/repos/ecl/code/lib/eCarList/DM/KARD'
-alias godm='cd /Users/cspencer/repos/ecl/code/lib/eCarList/DM/'
-alias gomongo='cd /Users/cspencer/repos/ecl/code/lib/eCarList/DM/Mongo'
-alias gosworm='cd /Users/cspencer/repos/ecl/code/lib/eCarList/DM/SWORM'
-alias ecl='cd /Users/cspencer/repos/ecl/code/'
-alias ecltest='cd /Users/cspencer/repos/ecl/code/test'
-alias root='cd /Users/cspencer/repos/ecl'
-alias robot='cd /Users/cspencer/repos/ecl-robot'
-alias invlocust='cd /Users/cspencer/repos/inventory.locust'
-alias bll='cd /Users/cspencer/repos/ecl/code/lib/eCarList/BLL'
-alias systask='cd /Users/cspencer/repos/ecl/code/lib/eCarList/BLL/SystemTask'
-alias paperwork='cd /Users/cspencer/repos/ecl/code/lib/eCarList/BLL/Paperwork'
-alias crud='cd /Users/cspencer/repos/ecl/code/lib/eCarList/BLL/CRUD'
-alias al='cd /Users/cspencer/repos/ecl/code/lib/eCarList/BLL/CRUD/AppraisalLog'
-alias goroute='cd /Users/cspencer/repos/ecl/code/lib/eCarList/App/Interfaces/Web'
-alias goadmin='cd /Users/cspencer/repos/ecl/code/lib/eCarList/App/Interfaces/Web/Admin'
-alias gowebservice='cd /Users/cspencer/repos/ecl/code/lib/eCarList/App/Interfaces/Web/WebService'
-alias goscr='cd ~/repos/ecl/code/script'
 alias uproot='root && git pull && git status'
-alias gobots='cd /Users/cspencer/repos/ecl/code/bots/'
 alias diffroot='root && git status'
-alias assets='cd /Users/cspencer/repos/ecl/assets'
 alias cca='gocss && compass compile admin'
 alias ccb='gocss && compass compile backend'
-alias vs="vagrant ssh d5a2b3e -c 'sudo su - production'"
-alias vdb="vagrant ssh b2f093e"
 alias gp='git pull'
 alias gs='git status'
 alias gd=gitdiff
-alias runpa=run_pa
 PS1='\t | \[`[ $? = 0 ] && X=4 || X=1; tput setaf $X`\]\u\[`tput sgr0`\]: \w $> '
 
 alias sessions=get_vim_sessions
@@ -117,4 +71,4 @@ alias sessions=get_vim_sessions
 alias g=grepfn
 alias f=findfn
 
-test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
+# test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
